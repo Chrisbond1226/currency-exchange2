@@ -2,14 +2,20 @@ var buttonSearch=document.querySelector("#search");
 
 
 buttonSearch.addEventListener("click",function(){
-    var searchedCountry=document.querySelector("#searchedInputCountry").value;
-    var changeCountry=document.querySelector("sear");
-    console.log(searchedCountry);
+    var searchedCountry=document.querySelector("#cCode").value;
+    var searchedCountry2=currencyList[searchedCountry]+":gi";
+    console.log(searchedCountry2);
+    var countryP=document.createElement("p");
+    countryP.textContent=searchedCountry2;
+
+    var changeCountry=document.querySelector("#searchedCountry");
+    changeCountry.appendChild(countryP);
+    
 });
 
 
 var myHeaders = new Headers();
-myHeaders.append("apikey", "mX2lEkIknZA8R2Mcn8LXfcQc3En92za0");
+myHeaders.append("apikey", "3g0reP7p482X9CYCdynwFLlUeSq3vkzc");
 
 var requestOptions = {
   method: 'GET',
@@ -209,7 +215,7 @@ var option=document.createElement("option");
 option.value=`${symbol}`;
 option.textContent=`${currencyList[symbol]}`;
 
-
+option.name=`${currencyList[symbol]}`;
 
 cCodeSelect.appendChild(option);
 
