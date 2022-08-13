@@ -1,13 +1,15 @@
 var buttonSearch=document.querySelector("#search");
-
+var countryResult="";
 
 buttonSearch.addEventListener("click",function(){
     var searchedCountry=document.querySelector("#cCode").value;
-    var searchedCountry2=currencyList[searchedCountry]+":";
-    console.log(searchedCountry2);
+    convertCurrency(searchedCountry);
+   
+    var searchedCountry2=currencyList[searchedCountry]+": "+countryResult;
+  
     var countryP=document.createElement("p");
     countryP.textContent=searchedCountry2;
-convertCurrency(searchedCountry);
+var result=convertCurrency(searchedCountry);
     var changeCountry=document.querySelector("#searchedCountry");
     changeCountry.appendChild(countryP);
     
@@ -23,12 +25,24 @@ var requestOptions = {
   headers: myHeaders
 };
 var convertCurrency=function(country){
+  
 fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${country}&from=USD&amount=1.00`, requestOptions)
   .then(response => response.text())
-  .then(result => console.log(result))
+  .then(result => {
+    
+    
+    
+     var countryResult2=JSON.parse(result);
+     countryResult=countryResult2.result;
+    
+   
+    
+  }
+    
+    )
   
   .catch(error => console.log('error', error));
-
+ 
 }
 
 var dropdown = document.querySelector('.dropdown');
