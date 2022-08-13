@@ -30,12 +30,11 @@ fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${countryResult}&f
 
     var changeCountry=document.querySelector("#searchedCountry");
     changeCountry.appendChild(countryP);
-    
-   
-    
   }
     
     )
+
+
   
   .catch(error => console.log('error', error));
  
@@ -47,7 +46,7 @@ dropdown.addEventListener('click', function(event) {
   dropdown.classList.toggle('is-active');
 });
 
-var list=document.querySelector(".dropdown-content");
+var list = document.querySelector(".dropdown-content");
 var cCodeSelect=document.querySelector("#cCode");
 var currencyList={
     "AED": "United Arab Emirates Dirham",
