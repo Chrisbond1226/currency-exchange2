@@ -214,4 +214,7 @@ option.textContent=`${currencyList[symbol]}`;
 cCodeSelect.appendChild(option);
 
   }
-  
+
+// Local Storage
+
+  localStorage.setItem()
