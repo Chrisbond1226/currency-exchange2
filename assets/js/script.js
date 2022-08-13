@@ -1,19 +1,7 @@
 var buttonSearch=document.querySelector("#search");
-var countryResult="";
 
-buttonSearch.addEventListener("click",function(){
-    var searchedCountry=document.querySelector("#cCode").value;
-    convertCurrency(searchedCountry);
-   
-    var searchedCountry2=currencyList[searchedCountry]+": "+countryResult;
-  
-    var countryP=document.createElement("p");
-    countryP.textContent=searchedCountry2;
-var result=convertCurrency(searchedCountry);
-    var changeCountry=document.querySelector("#searchedCountry");
-    changeCountry.appendChild(countryP);
-    
-});
+
+
 
 
 var myHeaders = new Headers();
@@ -24,16 +12,24 @@ var requestOptions = {
   redirect: 'follow',
   headers: myHeaders
 };
-var convertCurrency=function(country){
+var convertCurrency=function(countryResult){
   
-fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${country}&from=USD&amount=1.00`, requestOptions)
-  .then(response => response.text())
+fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${countryResult}&from=USD&amount=1.00`, requestOptions)
+  .then(response => response.json())
   .then(result => {
+    var searchedCountry=document.querySelector("#cCode").value;
     
     
-    
-     var countryResult2=JSON.parse(result);
-     countryResult=countryResult2.result;
+     
+     console.log(result.result);
+   // var  countryResult2=countryResult.result;
+    var searchedCountry2=currencyList[searchedCountry]+": "+result.result;
+  
+    var countryP=document.createElement("p");
+    countryP.textContent=searchedCountry2;
+
+    var changeCountry=document.querySelector("#searchedCountry");
+    changeCountry.appendChild(countryP);
     
    
     
@@ -238,3 +234,11 @@ cCodeSelect.appendChild(option);
 
   }
   
+  buttonSearch.addEventListener("click",function(){
+    var searchedCountry=document.querySelector("#cCode").value;
+    console.log(searchedCountry);
+   countryResult= convertCurrency(searchedCountry);
+   
+  
+    
+});
