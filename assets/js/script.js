@@ -1,26 +1,45 @@
 var buttonSearch=document.querySelector("#search");
 
 
-buttonSearch.addEventListener("click",function(){
-    var searchedCountry=document.querySelector("#searchedInputCountry").value;
-    var changeCountry=document.querySelector("sear");
-    console.log(searchedCountry);
-});
+
 
 
 var myHeaders = new Headers();
-myHeaders.append("apikey", "mX2lEkIknZA8R2Mcn8LXfcQc3En92za0");
+myHeaders.append("apikey", "3g0reP7p482X9CYCdynwFLlUeSq3vkzc");
 
 var requestOptions = {
   method: 'GET',
   redirect: 'follow',
   headers: myHeaders
 };
+var convertCurrency=function(countryResult){
+  
+fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${countryResult}&from=USD&amount=1.00`, requestOptions)
+  .then(response => response.json())
+  .then(result => {
+    var searchedCountry=document.querySelector("#cCode").value;
+    
+    
+     
+     console.log(result.result);
+   // var  countryResult2=countryResult.result;
+    var searchedCountry2=currencyList[searchedCountry]+": "+result.result;
+  
+    var countryP=document.createElement("p");
+    countryP.textContent=searchedCountry2;
 
-fetch("https://api.apilayer.com/exchangerates_data/convert?to=EUR&from=USD&amount=1.00", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
+    var changeCountry=document.querySelector("#searchedCountry");
+    changeCountry.appendChild(countryP);
+    
+   
+    
+  }
+    
+    )
+  
   .catch(error => console.log('error', error));
+ 
+}
 
 var dropdown = document.querySelector('.dropdown');
 dropdown.addEventListener('click', function(event) {
@@ -209,12 +228,17 @@ var option=document.createElement("option");
 option.value=`${symbol}`;
 option.textContent=`${currencyList[symbol]}`;
 
-
+option.name=`${currencyList[symbol]}`;
 
 cCodeSelect.appendChild(option);
 
   }
-
-// Local Storage
-
-  localStorage.setItem()
+  
+  buttonSearch.addEventListener("click",function(){
+    var searchedCountry=document.querySelector("#cCode").value;
+    console.log(searchedCountry);
+   countryResult= convertCurrency(searchedCountry);
+   
+  
+    
+});
