@@ -5,7 +5,7 @@ var buttonSearch=document.querySelector("#search");
 
 
 var myHeaders = new Headers();
-myHeaders.append("apikey", "3g0reP7p482X9CYCdynwFLlUeSq3vkzc");
+myHeaders.append("apikey", "h8L972qDu0jPEWce2PWPs6gQ5tOPtXVI");
 
 var requestOptions = {
   method: 'GET',
@@ -238,7 +238,7 @@ cCodeSelect.appendChild(option);
     var searchedCountry=document.querySelector("#cCode").value;
     var changeCountry=document.querySelector("#searchedCountry");
     changeCountry.textContent="";
-    console.log(searchedCountry);
+   
    countryResult= convertCurrency(searchedCountry);
    
   
