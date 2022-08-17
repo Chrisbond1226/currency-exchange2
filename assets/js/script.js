@@ -236,6 +236,8 @@ cCodeSelect.appendChild(option);
   
   buttonSearch.addEventListener("click",function(){
     var searchedCountry=document.querySelector("#cCode").value;
+    var changeCountry=document.querySelector("#searchedCountry");
+    changeCountry.textContent="";
     console.log(searchedCountry);
    countryResult= convertCurrency(searchedCountry);
    
