@@ -210,7 +210,7 @@ var convertCurrency = function (countryResult) {
 
       console.log("Test");
 
-      var searchedCountry = countryResult
+      var searchedCountry = countryResult 
 
       console.log(searchedCountry);
       // push searchedCountry into save country array
@@ -222,7 +222,7 @@ var convertCurrency = function (countryResult) {
 
       console.log(result.result);
       var countryResult2 = countryResult.result;
-      var searchedCountry2 = currencyList[searchedCountry] + ": " + result.result;
+      var searchedCountry2 = currencyList[searchedCountry] + ": " + result.result + " " + searchedCountry;
       console.log({searchedCountry2})
       var countryP = document.createElement("p");
       countryP.textContent = searchedCountry2;
