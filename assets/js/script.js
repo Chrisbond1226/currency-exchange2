@@ -202,6 +202,9 @@ var load = function () {
 }
 
 
+
+
+
 var convertCurrency = function (countryResult) {
   console.log(countryResult);
   fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${countryResult}&from=USD&amount=1.00`, requestOptions)
@@ -218,6 +221,7 @@ var convertCurrency = function (countryResult) {
 
       // calls save function 
       save();
+      
       console.log(saveCountry);
 
       console.log(result.result);
