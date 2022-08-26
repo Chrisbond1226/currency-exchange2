@@ -1,9 +1,10 @@
 var buttonSearch = document.querySelector("#search");
 var myHeaders = new Headers();
+
 var currencyList = {
-  "AED": "United Arab Emirates Dirham",
-  "AFN": "Afghan Afghani",
-  "ALL": "Albanian Lek",
+  "AED": ["United Arab Emirates Dirham","United Arab Emirates"],
+  "AFN": ["Afghan Afghani","Afghanistan"],
+  "ALL": ["Albanian Lek","Albania"],
   "AMD": "Armenian Dram",
   "ANG": "Netherlands Antillean Guilder",
   "AOA": "Angolan Kwanza",
@@ -199,8 +200,25 @@ var load = function () {
   countryLoaded = JSON.parse(countryLoaded);
   console.log("loaded", countryLoaded);
   convertCurrency(countryLoaded);
+  console.log(currencyList.AED[1]);
 }
-
+//console.log(currencyList.AED[1]);
+var getRandomFact=function(){
+  var apiKey='TuYuDinsb9CR1J2XJ0MWtw==tIVWoayj0rx414ob'
+  var limit = 1;
+  $.ajax({
+      method: 'GET',
+      url: 'https://api.api-ninjas.com/v1/facts?limit=' + limit,
+      headers: { 'X-Api-Key': apiKey},
+      contentType: 'application/json',
+      success: function(result) {
+    $(".randomFact").text(result[0].fact);
+      },
+      error: function ajaxError(jqXHR) {
+          console.error('Error: ', jqXHR.responseText);
+      }
+  });
+}
 
 var convertCurrency = function (countryResult) {
   console.log(countryResult);
@@ -275,4 +293,5 @@ buttonSearch.addEventListener("click", function () {
 });
 
 load()
+getRandomFact();
 // call load
